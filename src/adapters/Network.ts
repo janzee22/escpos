@@ -32,7 +32,7 @@ export default class Network extends Adapter {
                 }, 5000);
             } else {
                 this.retrying = false;
-                throw new Error(`Cannot connect to ${this.options.address}:${this.options.port}`);
+                //throw new Error(`Cannot connect to ${this.options.address}:${this.options.port}`);
             }
         });
 
@@ -52,9 +52,9 @@ export default class Network extends Adapter {
     }
 
     public async write(data: Uint8Array): Promise<void> {
-        return new Promise<void>(resolve => {
+        return new Promise<void>(() => {
             this.throwIfNeeded();
-            this.device.write(new Buffer(data), resolve);
+            this.device.write(new Buffer(data));
         });
     }
 
